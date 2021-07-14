@@ -1,0 +1,54 @@
+{
+  "name": "Mincol",
+  "description": "Najvyssi vrch Lucanskej Malej Fatry",
+  "isHard": false,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [49, 18],
+  },
+}
+{
+  "name": "Krivan",
+  "description": "Najvyssi vrch Krivanskej Malej Fatry",
+  "isHard": false,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [49, 16]
+  }
+}
+{
+  "name": "Lomnicky Stit",
+  "description": "Najznamejsi vrch Vysokych Tatier",
+  "isHard": true,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [49, 20]
+  }
+}
+{
+  "name": "Vihorlat",
+  "description": "Aspon nieco maju v tom Humennom",
+  "isHard": false,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [48, 22]
+  }
+}
+{
+  "name": "Kamzik",
+  "description": "Vrch pri hlavnom meste Slovenska",
+  "isHard": false,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [48, 17]
+  }
+}
+{
+  "name": "Blatny",
+  "description": "Maly kopec pri Lucenci",
+  "isHard": false,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [48, 19]
+  }
+}

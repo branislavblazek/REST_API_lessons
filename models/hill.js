@@ -1,6 +1,18 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+// crate geolocation Schema
+const GeoSchema = new Schema({
+  type: {
+    type: String,
+    default: "Point",
+  },
+  coordinates: {
+    type: [Number],
+    index: "2dsphere",
+  },
+});
+
 // create hill Scheme & Model
 const HillSchema = new Schema({
   name: {
@@ -11,11 +23,11 @@ const HillSchema = new Schema({
     type: String,
     required: [true, 'Description field is required'],
   },
-  niceView: {
+  isHard: {
     type: Boolean,
     default: false,
   },
-  // add an geo location
+  geometry: GeoSchema,
 });
 
 const Hill = mongoose.model('hill', HillSchema);

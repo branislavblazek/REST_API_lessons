@@ -6,13 +6,15 @@ const mongoose = require('mongoose');
 const app = express();
 
 // connect to MongoDB
-mongoose.connect('mongodb://localhost/hilldb', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect('mongodb://localhost/hilldb', {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
 mongoose.Promise = global.Promise;
 
 //listen for requests
 app.listen(3000, () => {
   console.log('Listening on port 3000!');
 });
+
+app.use(express.static('public'));
 
 // middleware for body parsing
 app.use(bodyParser.json());

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="sk" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Simple REST Api for hills</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="/styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="title">Simple searcher working on NodeJS and MongoDB</h1>
+    <div>
+      <h1>Find a hill in your area</h1>
+      <div id="hills"></div>
+    </div>
+
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+
+    <script type="text/babel">
+        var Hills = React.createClass({
+            getInitialState: function(){
+                return({
+                    hills: []
+                });
+            },
+            render: function(){
+                var hills = this.state.hills;
+                hills = hills.map(function(hill, index){
+                    return(
+                        <li key={index}>
+                            <span className={hill.isHard}></span>
+                            <span className="name">{hill.name}</span>
+                            <span className="rank">{hill.description}</span>
+                            <span className="dist">{hill.dist.calculated}</span>
+                        </li>
+                    );
+                });
+                return(
+                    <div id="hill-container">
+                        <form id="search" onSubmit={this.handleSubmit}>
+                            <label>Enter your Latitude:</label>
+                            <input type="text" ref="lat" placeholder="latitude" required />
+                            <label>Enter your Longitude:</label>
+                            <input type="text" ref="lng" placeholder="longitude" required />
+                            <input type="submit" value="Find Hills" />
+                        </form>
+                        <ul>{hills}</ul>
+                    </div>
+                );
+            },
+            handleSubmit: function(e){
+                e.preventDefault();
+                var lng = this.refs.lng.value;
+                var lat = this.refs.lat.value;
+
+                fetch('/api/hills?lng=' + lng + '&lat=' + lat)
+                  .then(data => data.json())
+                  .then(json => {
+                    this.setState({
+                        hills: json
+                    });
+                });
+            }
+        });
+        ReactDOM.render(<Hills />, document.getElementById('hills'));
+        </script>
+  </body>
+</html>
